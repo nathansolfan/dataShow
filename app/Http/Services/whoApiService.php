@@ -19,6 +19,15 @@ class whoApiService
         }
 
         return $this->formatData($response->json());
+    }
 
+    private function formatData(array $data)
+    {
+        $records = $data['value'] ?? [];
+
+        return [ 
+            'labels' => array_column($records, 'TimeDim'),
+            'values' => array_column($records, 'NumericValue')
+        ];
     }
 }
