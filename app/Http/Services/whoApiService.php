@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 
-class whoApiService
+class WhoApiService
 {
     protected string $baseUrl = 'https://ghoapi.azureedge.net/api';
 
