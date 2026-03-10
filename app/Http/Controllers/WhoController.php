@@ -10,8 +10,8 @@ class WhoController extends Controller
     public function index(string $country)
     {
         $service = new whoApiService;
-        $data = $service->getUnemploymentRates($country);
+        $data = $service->getUnemploymentRates(strtoupper($country));
 
-        return response()->json();
+        return response()->json($data);
     }
 }
