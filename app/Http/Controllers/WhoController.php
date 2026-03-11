@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 
 class WhoController extends Controller
 {
-    public function index(string $country)
-    {
-        $service = new whoApiService;
-        $data = $service->getUnemploymentRates(strtoupper($country));
+  public function index(string $country)
+{
+    $response = \Illuminate\Support\Facades\Http::withoutVerifying()
+    ->get('https://ghoapi.azureedge.net/api/Indicator', [
+        '$filter' => "contains(IndicatorName, 'mortality')",
+    ]);
 
-        return response()->json($data);
-    }
+dd($response->json());
+}
 }
