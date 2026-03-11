@@ -9,11 +9,13 @@ class WhoController extends Controller
 {
   public function index(string $country)
 {
-    $response = \Illuminate\Support\Facades\Http::withoutVerifying()
-    ->get('https://ghoapi.azureedge.net/api/Indicator', [
-        '$filter' => "contains(IndicatorName, 'mortality')",
-    ]);
+    $service = new whoApiService;
+    $data = $service->getUnemploymentRates(strtoupper($country));
 
-dd($response->json());
+    return response()->json($data);
+
+
+
+
 }
 }
