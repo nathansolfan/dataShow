@@ -7,4 +7,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/who/{country}', [WhoController::class, 'index']);
+Route::get('/who/{country?}', [WhoController::class, 'index']);
