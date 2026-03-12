@@ -26,4 +26,4 @@ class WhoController extends Controller
 
 //     dd($response->json());
 // }
-}
+
