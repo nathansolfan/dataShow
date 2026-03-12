@@ -6,8 +6,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+    
+
     <h1>Esperança de Vida no Brasil (2000-2021)</h1>
-    <canvas id="chart" width="900" height="400"></canvas>
+    <canvas id="chart" width="700" height="200"></canvas>
 
     <script>
         const ctx = document.getElementById('chart').getContext('2d');
