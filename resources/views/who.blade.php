@@ -7,22 +7,22 @@
 </head>
 <body>
 
-    <h1>Esperança de Vida (2000-2021)</h1>
+    <h1> Life Expectancy(2000-2021) - {{strtoupper($country)}}</h1>
     <select onchange="window.location.href='/who/' + this.value">
+        
         @foreach ($countries as $c )
-        <option value="{{ $c['Code']}}" {{strtoupper($country) === $c['Code']}} >
+        <option value="{{ $c['Code']}}" {{strtoupper($country) === $c['Code'] ? 'selected' : ''}} >
              {{$c['Title']}}
         </option>
-        {{$c['Title']}}
             
         @endforeach
-
-
     </select>
 
 
 
-    <canvas id="chart" width="700" height="200"></canvas>
+    <div style="width: 600px; margin: 0 auto">
+        <canvas id="chart" ></canvas>
+    </div>
 
     <script>
         const ctx = document.getElementById('chart').getContext('2d');
@@ -31,7 +31,7 @@
             data: {
                 labels: @json($data['labels']),
                 datasets: [{
-                    label: 'Esperança de Vida (anos)',
+                    label: 'Life Expectancy',
                     data: @json($data['values']),
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
