@@ -8,6 +8,21 @@ class whoApiService
 {
     protected string $baseUrl = 'https://ghoapi.azureedge.net/api';
 
+    public function getCountries()
+    {
+        $response = Http::withoutVerifying()->get("{$this->baseUrl}/DIMENSION/COUNTRY/DimensionValues");
+
+        if ($response->failed()) {
+            return [];
+        }
+
+        $countries = $response->json()['value'] ?? [];
+
+        usort($countries, fn($a, $b) => strcmp($a['Title'], $b['Title']));
+
+        return $countries;
+    }
+
    
     public function getUnemploymentRates(string $country)
 {
