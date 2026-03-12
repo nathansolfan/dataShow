@@ -10,7 +10,9 @@
     <h1>Esperança de Vida (2000-2021)</h1>
     <select onchange="window.location.href='/who/' + this.value">
         @foreach ($countries as $c )
-        <option value="{{ $c['Code']}}" {{strtoupper($country) === $c['Code']}} ></option>
+        <option value="{{ $c['Code']}}" {{strtoupper($country) === $c['Code']}} >
+             {{$c['Title']}}
+        </option>
         {{$c['Title']}}
             
         @endforeach
