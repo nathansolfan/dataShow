@@ -14,7 +14,7 @@ class WhoController extends Controller
     $countries = $service->getCountries();
     $data = $service->getUnemploymentRates(strtoupper($country));
 
-    return response()->json($data);
+    // return response()->json($data);
     return view('who', compact('data', 'country', 'countries'));
 }
     }

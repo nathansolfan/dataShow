@@ -7,9 +7,19 @@
 </head>
 <body>
 
-    
+    <h1>Esperança de Vida (2000-2021)</h1>
+    <select onchange="window.location.href='/who/' + this.value">
+        @foreach ($countries as $c )
+        <option value="{{ $c['Code']}}" {{strtoupper($country) === $c['Code']}} ></option>
+        {{$c['Title']}}
+            
+        @endforeach
 
-    <h1>Esperança de Vida no Brasil (2000-2021)</h1>
+
+    </select>
+
+
+
     <canvas id="chart" width="700" height="200"></canvas>
 
     <script>
