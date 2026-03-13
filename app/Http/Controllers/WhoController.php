@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SearchHistory;
 use App\Services\whoApiService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -14,10 +15,31 @@ class WhoController extends Controller
     $countries = $service->getCountries();
     $data = $service->getUnemploymentRates(strtoupper($country));
 
+    $countryName = collect($countries)->firstWhere('Code', strtoupper($country))['Title'] ?? $country;
+
+    SearchHistory::create([
+        'country_code' => strtoupper($country),
+        'country_name' => $countryName
+    ]);
+
     // return response()->json($data);
     return view('who', compact('data', 'country', 'countries'));
 }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // public function index(string $country)
 // {
