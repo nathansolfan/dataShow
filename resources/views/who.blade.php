@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Life Expectancy - {{ strtoupper($country) }}</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body>
@@ -57,7 +59,7 @@
             <canvas id="chart"></canvas>
         </div>
 
-        
+
 
         <script>
             const ctx = document.getElementById('chart').getContext('2d');
