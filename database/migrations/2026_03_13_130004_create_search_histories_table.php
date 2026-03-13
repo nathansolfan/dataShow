@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('search_histories', function (Blueprint $table) {
             $table->id();
+            $table->string('country_code');
+            $table->string('country_name');
             $table->timestamps();
         });
     }
