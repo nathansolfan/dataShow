@@ -9,23 +9,33 @@ use Illuminate\Support\Facades\Http;
 
 class WhoController extends Controller
 {
-  public function index(string $country)
-{
-    $service = new whoApiService;
-    $countries = $service->getCountries();
-    $data = $service->getUnemploymentRates(strtoupper($country));
+    public function index(string $country = 'USA')
+    {
+        $service = new whoApiService;
+        $countries = $service->getCountries();
+        $data = $service->getUnemploymentRates(strtoupper($country));
 
-    $countryName = collect($countries)->firstWhere('Code', strtoupper($country))['Title'] ?? $country;
 
-    SearchHistory::create([
-        'country_code' => strtoupper($country),
-        'country_name' => $countryName
-    ]);
-
-    // return response()->json($data);
-    return view('who', compact('data', 'country', 'countries'));
-}
+        // return response()->json($data);
+        return view('who', compact('data', 'country', 'countries'));
     }
+
+
+    public function save(Request $request)
+    {
+        $service = new whoApiService;
+        $countries = $service->getCountries();
+
+        $countryName = collect($countries)->firstWhere('Code', $request->country_code)['Title'] ?? $request->country_code;
+
+        SearchHistory::create([
+            'country_code' => $request->country_code,
+            'country_name' => $countryName
+        ]);
+
+        return back()->with('success', 'Search Saved');
+    }
+}
 
 
 
@@ -48,4 +58,3 @@ class WhoController extends Controller
 
 //     dd($response->json());
 // }
-
