@@ -11,8 +11,8 @@
     <h1> Life Expectancy(2000-2021) - {{strtoupper($country)}}</h1>
 
 
-    <select onchange="window.location.href='/who/' + this.value">
-                
+    <select style="width: 100px; padding: 6px"   onchange="window.location.href='/who/' + this.value">
+
         @foreach ($countries as $c )
         <option value="{{ $c['Code']}}" {{strtoupper($country) === $c['Code'] ? 'selected' : ''}} >
              {{$c['Title']}}
