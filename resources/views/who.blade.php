@@ -6,10 +6,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div style="width: 600px; margin: 0 auto">
 
     <h1> Life Expectancy(2000-2021) - {{strtoupper($country)}}</h1>
+
+
     <select onchange="window.location.href='/who/' + this.value">
-        
+                
         @foreach ($countries as $c )
         <option value="{{ $c['Code']}}" {{strtoupper($country) === $c['Code'] ? 'selected' : ''}} >
              {{$c['Title']}}
@@ -20,9 +23,7 @@
 
 
 
-    <div style="width: 600px; margin: 0 auto">
         <canvas id="chart" ></canvas>
-    </div>
 
     <script>
         const ctx = document.getElementById('chart').getContext('2d');
@@ -47,5 +48,7 @@
             }
         });
     </script>
+        </div>
+
 </body>
 </html>
