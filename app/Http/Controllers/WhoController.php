@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SearchHistory;
 use App\Services\whoApiService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class WhoController extends Controller
@@ -15,6 +16,10 @@ class WhoController extends Controller
         $countries = $service->getCountries();
         $data = $service->getUnemploymentRates(strtoupper($country));
 
+        // dd(
+        //     Cache::has('who_countries'),
+        //     Cache::has("who_data_{$country}"),
+        // );
 
         // return response()->json($data);
         return view('who', compact('data', 'country', 'countries'));
