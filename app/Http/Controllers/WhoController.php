@@ -61,6 +61,34 @@ class WhoController extends Controller
 
         return back()->with('success', 'Search Saved');
     }
+
+
+
+
+    public function export(string $country)
+    {
+        $service = new whoApiService;
+        $data = $service->getUnemploymentRates(strtoupper($country));
+
+        $filename = "life_expectancy_{$country}.csv";
+
+        $headers = [
+            'Content-Type'        => 'text/csv',
+            'Content-Disposition' => "attachment; filename={$filename}", 
+        ];
+
+        $callback = function () use ($data) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, ['Year', 'Life Expectancy']);
+
+            foreach ($data['labels'] as $i => $year) {
+                fputcsv($file, [$year, $data['values'][$i]]);
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }
 
 
