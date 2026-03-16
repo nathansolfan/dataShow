@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\WhoController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,3 +10,6 @@ Route::get('/', function () {
 
 Route::get('/who/{country?}', [WhoController::class, 'index']);
 Route::post('/who/save', [WhoController::class, 'save'])->name('who.save');
+
+Route::get('/history', [HistoryController::class, 'index']);
+Route::delete('/history/{id}', [HistoryController::class, 'delete']);
