@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class whoApiService
@@ -10,8 +11,14 @@ class whoApiService
 
     public function getCountries()
     {
+        //CACHE
+        //CACHE::remember(key,duration,callback)
+
+        return Cache::remember('who_countries', now()->addHours(24), function () {
+
         $response = Http::withoutVerifying()->get("{$this->baseUrl}/DIMENSION/COUNTRY/DimensionValues");
 
+        
         if ($response->failed()) {
             return [];
         }
@@ -21,12 +28,20 @@ class whoApiService
         usort($countries, fn($a, $b) => strcmp($a['Title'], $b['Title']));
 
         return $countries;
+            
+        });
+
+        
+
     }
 
    
     public function getUnemploymentRates(string $country)
 {
-    $response = Http::withoutVerifying()->get("{$this->baseUrl}/WHOSIS_000001", [
+
+    return Cache::remember("who_data_{$country}", now()->addHour(), function () use ($country) {
+
+     $response = Http::withoutVerifying()->get("{$this->baseUrl}/WHOSIS_000001", [
         '$filter' => "SpatialDim eq '{$country}' and Dim1 eq 'SEX_BTSX'",
         '$orderby' => 'TimeDim asc',
     ]);
@@ -36,6 +51,8 @@ class whoApiService
     }
 
     return $this->formatData($response->json());
+        
+    });   
 }
 
     private function formatData(array $data)
