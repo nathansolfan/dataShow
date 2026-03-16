@@ -11,5 +11,7 @@ Route::get('/', function () {
 Route::get('/who/{country?}', [WhoController::class, 'index']);
 Route::post('/who/save', [WhoController::class, 'save'])->name('who.save');
 
+Route::get('/compare', [WhoController::class, 'compare']);
+
 Route::get('/history', [HistoryController::class, 'index']);
 Route::delete('/history/{id}', [HistoryController::class, 'destroy']);

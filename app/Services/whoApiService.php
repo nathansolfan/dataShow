@@ -15,9 +15,7 @@ class whoApiService
         //CACHE::remember(key,duration,callback)
 
         return Cache::remember('who_countries', now()->addHours(24), function () {
-
         $response = Http::withoutVerifying()->get("{$this->baseUrl}/DIMENSION/COUNTRY/DimensionValues");
-
         
         if ($response->failed()) {
             return [];

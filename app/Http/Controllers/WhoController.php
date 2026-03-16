@@ -10,6 +10,24 @@ use Illuminate\Support\Facades\Http;
 
 class WhoController extends Controller
 {
+
+    public function compare(Request $request)
+    {
+        $country1 = strtoupper($request->get('country1', 'GBR'));
+        $country2 = strtoupper($request->get('country2', 'USA'));
+
+        $service = new whoApiService;
+        $countries = $service->getCountries();
+        $data1 = $service->getUnemploymentRates($country1);
+        $data2 = $service->getUnemploymentRates($country2);
+
+        return view('compare', compact('countries', 'country1', 'country2', 'data1', 'data2'));
+    }
+
+
+
+
+
     public function index(string $country = 'USA')
     {
         $service = new whoApiService;
@@ -24,6 +42,9 @@ class WhoController extends Controller
         // return response()->json($data);
         return view('who', compact('data', 'country', 'countries'));
     }
+
+
+
 
 
     public function save(Request $request)
