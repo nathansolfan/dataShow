@@ -15,3 +15,5 @@ Route::get('/compare', [WhoController::class, 'compare']);
 
 Route::get('/history', [HistoryController::class, 'index']);
 Route::delete('/history/{id}', [HistoryController::class, 'destroy']);
+
+Route::get('/export/{country}', [WhoController::class, 'export']);
