@@ -20,7 +20,8 @@
                     Life Expectancy — {{ strtoupper($country) }}
                 </h1>
             </div>
-            <a href="/history"
+            <div class="flex gap-2">
+                <a href="/history"
                 class="text-sm text-zinc-500 border border-zinc-200 rounded-lg px-3 py-1.5 hover:bg-zinc-100 hover:text-zinc-800 transition">
                 History →
             </a>
@@ -28,6 +29,10 @@
                 class="text-sm text-zinc-500 border border-zinc-200 rounded-lg px-3 py-1.5 hover:bg-zinc-100 hover:text-zinc-800 transition">
                 Compare →
             </a>
+
+
+            </div>
+            
         </div>
 
         {{-- CARD --}}
