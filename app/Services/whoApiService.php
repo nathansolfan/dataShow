@@ -27,10 +27,7 @@ class whoApiService
 
         return $countries;
             
-        });
-
-        
-
+        });      
     }
 
    
@@ -62,4 +59,12 @@ class whoApiService
             'values' => array_column($records, 'NumericValue')
         ];
     }
+
+    
+
+
+
+
+
+
 }
