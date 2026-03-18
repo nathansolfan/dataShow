@@ -89,6 +89,30 @@ class WhoController extends Controller
 
         return response()->stream($callback, 200, $headers);
     }
+
+
+    public function api(string $country)
+    {
+        $service = new whoApiService;
+        $data = $service->getUnemploymentRates(strtoupper($country));
+
+        return response()->json([
+            'country' => strtoupper($country),
+            'indicator' => 'Life Expectancy',
+            'source' => 'WHO Global Health Organization',
+            'data' => array_map(fn($year, $value) => [
+                'year' => $year,
+                'value' => round($value, 2),
+            ], $data['labels'], $data['values'])
+        ]);
+    }
+
+
+
+
+
+
+    
 }
 
 

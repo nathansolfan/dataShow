@@ -61,10 +61,4 @@ class whoApiService
     }
 
     
-
-
-
-
-
-
 }
