@@ -145,28 +145,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($history as $record)
-                        <tr>
-                            <td>
-                                <a href="/who/{{ $record->country_code }}" class="country-link">
-                                    {{ $record->country_name }}
-                                </a>
-                            </td>
-                            <td><span class="code-badge">{{ $record->country_code }}</span></td>
-                            <td>{{ $record->created_at->format('M d, Y H:i') }}</td>
-                            <td>
-                                <form method="POST" action="/history/{{$record->id}}">
+                @foreach($history as $record)
+                    <tr>
+                        <td>
+                            <a href="/who/{{ $record->country_code }}" class="country-link">
+                                {{ $record->country_name }}
+                            </a>
+                            <span class="date-text">{{ $record->created_at->format('M d, Y H:i') }}</span>
+                        </td>
+                        <td><span class="code-badge">{{ $record->country_code }}</span></td>
+                        <td>
+                            <div class="actions">
+                                <a href="/export/{{ $record->country_code }}" class="btn-csv">↓ CSV</a>
+                                <form method="POST" action="/history/{{ $record->id }}" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="delete-btn" type="submit" title="Delete">✕</button>
+                                    <button class="btn-del" type="submit">✕</button>
                                 </form>
-                            </td>
-                        </tr>
-                    @endforeach
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         @endif
-        <a href="/export/{{ $record->country_code}}" class="back-link">Download</a>
 
     </div>
 </body>
