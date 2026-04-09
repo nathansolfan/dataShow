@@ -32,7 +32,7 @@
                 Compare →
                 </a>
 
-                <a href="/export/{$country}"
+                <a href="/export/{{$country}}"
                    class="text-sm text-zinc-500 border border-zinc-200 rounded-lg px-3 py-1.5 hover:bg-zinc-100 hover:text-zinc-800 transition">
                     Download →
                 </a>

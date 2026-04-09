@@ -61,6 +61,7 @@ class WhoController extends Controller
 
     public function export(string $country)
     {
+        dd($country);
         $service = new whoApiService;
         $data = $service->getUnemploymentRates(strtoupper($country));
 

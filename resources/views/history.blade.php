@@ -118,7 +118,6 @@
         <div class="header">
             <h1>Search History</h1>
             <div >
-                <a href="/export/{ $record->country_code}" class="back-link">Download</a>
 
                 <a href="/who" class="back-link">Back to chart ← </a>
 
@@ -167,6 +166,7 @@
                 </tbody>
             </table>
         @endif
+        <a href="/export/{{ $record->country_code}}" class="back-link">Download</a>
 
     </div>
 </body>
