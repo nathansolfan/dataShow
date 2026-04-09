@@ -25,9 +25,6 @@ class WhoController extends Controller
     }
 
 
-
-
-
     public function index(string $country = 'USA')
     {
         $service = new whoApiService;
@@ -42,9 +39,6 @@ class WhoController extends Controller
         // return response()->json($data);
         return view('who', compact('data', 'country', 'countries'));
     }
-
-
-
 
 
     public function save(Request $request)
@@ -74,7 +68,7 @@ class WhoController extends Controller
 
         $headers = [
             'Content-Type'        => 'text/csv',
-            'Content-Disposition' => "attachment; filename={$filename}", 
+            'Content-Disposition' => "attachment; filename={$filename}",
         ];
 
         $callback = function () use ($data) {
@@ -112,7 +106,7 @@ class WhoController extends Controller
 
 
 
-    
+
 }
 
 

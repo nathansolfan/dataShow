@@ -117,8 +117,17 @@
 
         <div class="header">
             <h1>Search History</h1>
-            <a href="/who" class="back-link">← Back to chart</a>
+            <div >
+                <a href="/export/{ $record->}" class="back-link">Download</a>
+
+                <a href="/who" class="back-link">Back to chart ← </a>
+
+            </div>
+
+
         </div>
+
+
 
         @if(session('success'))
             <div class="success">✓ {{ session('success') }}</div>
