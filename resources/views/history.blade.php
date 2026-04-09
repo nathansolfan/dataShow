@@ -157,7 +157,7 @@
                         <td>
                             <div class="actions">
                                 <a href="/export/{{ $record->country_code }}" class="btn-csv">↓ CSV</a>
-                                <form method="POST" action="/history/{{ $record->id }}" style="display:inline">
+                                <form method="POST" action="/history/{{ $record->id }}" onclick="alert('Are you sure?')" style="display:inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn-del" type="submit">✕</button>
