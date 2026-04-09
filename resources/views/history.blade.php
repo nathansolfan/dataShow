@@ -118,7 +118,7 @@
         <div class="header">
             <h1>Search History</h1>
             <div >
-                <a href="/export/{ $record->}" class="back-link">Download</a>
+                <a href="/export/{ $record->country_code}" class="back-link">Download</a>
 
                 <a href="/who" class="back-link">Back to chart ← </a>
 
